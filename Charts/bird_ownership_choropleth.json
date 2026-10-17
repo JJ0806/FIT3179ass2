@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where was bird ownership most common?",
+    "subtitle": [
+      "Households with birds (%), 2016 historical snapshot",
+      "Grey: suppressed or missing. NT estimate suppressed; other small samples require caution."
+    ],
+    "anchor": "start"
+  },
+  "width": 640,
+  "height": 430,
+  "background": "white",
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8ECEF",
+      "domain": false
+    },
+    "legend": {
+      "orient": "bottom",
+      "labelFontSize": 12
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitleColor": "#59656D",
+      "offset": 18
+    }
+  },
+  "data": {
+    "url": "Data/australia_states.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "projection": {
+    "type": "mercator"
+  },
+  "transform": [
+    {
+      "lookup": "properties.state_code",
+      "from": {
+        "data": {
+          "url": "Data/bird_ownership_states_2016.csv",
+          "format": {
+            "type": "csv"
+          }
+        },
+        "key": "state_code",
+        "fields": [
+          "state",
+          "ownership_pct",
+          "sample_n",
+          "reliable"
+        ]
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E3E8EB",
+        "stroke": "white"
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.reliable == 1 && isValid(datum.ownership_pct)"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "ownership_pct",
+          "type": "quantitative",
+          "title": "Households (%)",
+          "scale": {
+            "scheme": "tealblues",
+            "domain": [
+              0,
+              20
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "ownership_pct",
+            "type": "quantitative",
+            "title": "Households (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "sample_n",
+            "type": "quantitative",
+            "title": "Survey sample (all respondents)",
+            "format": ","
+          }
+        ]
+      }
+    }
+  ]
+}

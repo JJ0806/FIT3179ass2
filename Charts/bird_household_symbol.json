@@ -1,0 +1,146 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where were bird-owning households concentrated?",
+    "subtitle": [
+      "Approximate derived household counts, 2016",
+      "Circle area encodes count. Suppressed states have no circle."
+    ],
+    "anchor": "start"
+  },
+  "width": 640,
+  "height": 430,
+  "background": "white",
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8ECEF",
+      "domain": false
+    },
+    "legend": {
+      "orient": "bottom",
+      "labelFontSize": 12
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitleColor": "#59656D",
+      "offset": 18
+    }
+  },
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "Data/australia_states.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#EDF1F2",
+        "stroke": "white"
+      }
+    },
+    {
+      "data": {
+        "url": "Data/bird_ownership_states_2016.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.reliable == 1"
+        },
+        {
+          "lookup": "state_code",
+          "from": {
+            "data": {
+              "url": "Data/households_states_2016.csv",
+              "format": {
+                "type": "csv"
+              }
+            },
+            "key": "state_code",
+            "fields": [
+              "households"
+            ]
+          }
+        },
+        {
+          "filter": "isValid(datum.households) && datum.households > 0"
+        },
+        {
+          "calculate": "datum.households * datum.ownership_pct / 100",
+          "as": "estimated_bird_households"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "color": "#157A6E",
+        "opacity": 0.7,
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "estimated_bird_households",
+          "type": "quantitative",
+          "title": "Estimated bird households",
+          "scale": {
+            "range": [
+              0,
+              5000
+            ]
+          },
+          "legend": {
+            "format": "~s"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "estimated_bird_households",
+            "type": "quantitative",
+            "title": "Approximate bird households",
+            "format": ",.0f"
+          },
+          {
+            "field": "ownership_pct",
+            "type": "quantitative",
+            "title": "Ownership (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "sample_n",
+            "type": "quantitative",
+            "title": "Survey sample",
+            "format": ","
+          }
+        ]
+      }
+    }
+  ]
+}
