@@ -1,0 +1,117 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "How often is bird housing cleaned?",
+    "subtitle": [
+      "Victoria, 2023; bird owners with relevant housing (n=1,205)",
+      "Printed values total 101% from rounding; bar normalised. Unlabelled Never segment omitted."
+    ],
+    "anchor": "start"
+  },
+  "width": 640,
+  "height": 100,
+  "background": "white",
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8ECEF",
+      "domain": false,
+      "labelLimit": 260
+    },
+    "legend": {
+      "orient": "bottom",
+      "labelFontSize": 12,
+      "labelLimit": 300,
+      "titleLimit": 300
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitleColor": "#59656D",
+      "offset": 18
+    }
+  },
+  "data": {
+    "url": "../Data/victoria_bird_cleaning_2023.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "share_pct": "number",
+        "order": "number",
+        "sample_n": "number"
+      }
+    }
+  },
+  "mark": {
+    "type": "bar",
+    "height": 50
+  },
+  "encoding": {
+    "x": {
+      "field": "share_pct",
+      "type": "quantitative",
+      "stack": "normalize",
+      "title": "Normalised share of published labelled percentages",
+      "axis": {
+        "format": ".0%"
+      }
+    },
+    "color": {
+      "field": "frequency",
+      "type": "nominal",
+      "title": "Cleaning frequency",
+      "scale": {
+        "domain": [
+          "Every day",
+          "More than once a week",
+          "Once a week",
+          "Weekly to monthly",
+          "Every 2\u20133 months",
+          "Less often than every 3 months",
+          "Not applicable"
+        ],
+        "range": [
+          "#174B45",
+          "#157A6E",
+          "#4C9C8A",
+          "#8BC7B6",
+          "#B7D8C8",
+          "#D6E9DF",
+          "#D6DBDF"
+        ]
+      },
+      "legend": {
+        "columns": 2,
+        "labelLimit": 320
+      }
+    },
+    "order": {
+      "field": "order",
+      "type": "quantitative"
+    },
+    "tooltip": [
+      {
+        "field": "frequency",
+        "type": "nominal",
+        "title": "Cleaning frequency"
+      },
+      {
+        "field": "share_pct",
+        "type": "quantitative",
+        "title": "Published rounded percentage (%)",
+        "format": ".0f"
+      },
+      {
+        "field": "sample_n",
+        "type": "quantitative",
+        "title": "Question-specific sample",
+        "format": ","
+      }
+    ]
+  }
+}

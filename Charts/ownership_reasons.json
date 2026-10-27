@@ -1,0 +1,86 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Why do Australians keep birds?",
+    "subtitle": "Reported reasons among bird owners, Australia, 2022; percentages need not sum to 100%",
+    "anchor": "start"
+  },
+  "width": 640,
+  "height": 220,
+  "background": "white",
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8ECEF",
+      "domain": false,
+      "labelLimit": 260
+    },
+    "legend": {
+      "orient": "bottom",
+      "labelFontSize": 12,
+      "labelLimit": 300,
+      "titleLimit": 300
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitleColor": "#59656D",
+      "offset": 18
+    }
+  },
+  "data": {
+    "url": "../Data/bird_ownership_reasons_2022.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "share_pct": "number"
+      }
+    }
+  },
+  "mark": {
+    "type": "point",
+    "filled": true,
+    "size": 140,
+    "color": "#157A6E"
+  },
+  "encoding": {
+    "x": {
+      "field": "share_pct",
+      "type": "quantitative",
+      "title": "Bird owners (%)",
+      "scale": {
+        "domain": [
+          0,
+          100
+        ]
+      },
+      "axis": {
+        "labelExpr": "datum.value + '%'"
+      }
+    },
+    "y": {
+      "field": "reason",
+      "type": "nominal",
+      "title": "Reason",
+      "sort": "-x"
+    },
+    "tooltip": [
+      {
+        "field": "reason",
+        "type": "nominal",
+        "title": "Reason"
+      },
+      {
+        "field": "share_pct",
+        "type": "quantitative",
+        "title": "Bird owners (%)",
+        "format": ".0f"
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+pet_type,consideration,share_pct,sample_n
+Bird,It’s what I’ve always done,31,1521
+Bird,Pet’s preferences,30,1521
+Bird,Nutrition / benefits for health,26,1521
+Bird,Natural diet in the wild,18,1521
+Bird,Trial and error,18,1521
+Dog,Recommendations from vet practice,39,16880
+Dog,Pet age / weight,36,16880
+Dog,Nutrition / benefits for health,35,16880
+Dog,Pet’s preferences,24,16880
+Dog,It’s what I’ve always done,22,16880
+Cat,Pet’s preferences,40,12056
+Cat,Recommendations from vet practice,34,12056
+Cat,Nutrition / benefits for health,28,12056
+Cat,Pet age / weight,28,12056
+Cat,In response to animal behaviour,27,12056

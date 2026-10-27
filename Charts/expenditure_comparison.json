@@ -1,0 +1,104 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "How does annual bird expenditure compare?",
+    "subtitle": [
+      "Mean annual spending per owning household, to March 2025 (AUD)",
+      "Includes households reporting zero expenditure in a category."
+    ],
+    "anchor": "start"
+  },
+  "width": 640,
+  "height": 300,
+  "background": "white",
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8ECEF",
+      "domain": false,
+      "labelLimit": 260
+    },
+    "legend": {
+      "orient": "bottom",
+      "labelFontSize": 12,
+      "labelLimit": 300,
+      "titleLimit": 300
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitleColor": "#59656D",
+      "offset": 18
+    }
+  },
+  "data": {
+    "url": "../Data/pet_expenditure_2025.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "annual_spend_aud": "number",
+        "sample_n": "number"
+      }
+    }
+  },
+  "mark": {
+    "type": "point",
+    "filled": true,
+    "size": 140
+  },
+  "encoding": {
+    "x": {
+      "field": "annual_spend_aud",
+      "type": "quantitative",
+      "title": "Annual spending per owning household (AUD)",
+      "scale": {
+        "zero": true
+      },
+      "axis": {
+        "format": "$,.0f"
+      }
+    },
+    "y": {
+      "field": "pet_type",
+      "type": "nominal",
+      "title": "Pet type",
+      "sort": "-x"
+    },
+    "color": {
+      "condition": {
+        "test": "datum.pet_type == 'Birds'",
+        "value": "#157A6E"
+      },
+      "value": "#AAB5BC"
+    },
+    "tooltip": [
+      {
+        "field": "pet_type",
+        "type": "nominal",
+        "title": "Pet type"
+      },
+      {
+        "field": "annual_spend_aud",
+        "type": "quantitative",
+        "title": "Annual household spend (AUD)",
+        "format": "$,.0f"
+      },
+      {
+        "field": "basis",
+        "type": "nominal",
+        "title": "Denominator"
+      },
+      {
+        "field": "sample_n",
+        "type": "quantitative",
+        "title": "Pet-type sample",
+        "format": ","
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+pet_type,service,share_pct,sample_n
+Dog,Veterinary,92,16880
+Cat,Veterinary,78,12056
+Bird,Veterinary,23,1521
+Reptile / amphibian,Veterinary,19,658
+Small mammal,Veterinary,69,1233
+Large mammal,Veterinary,65,764
+Dog,Grooming,53,16880
+Cat,Grooming,12,12056
+Bird,Grooming,7,1521
+Reptile / amphibian,Grooming,3,658
+Small mammal,Grooming,19,1233
+Large mammal,Grooming,57,764
+Dog,Pet sitting,16,16880
+Cat,Pet sitting,13,12056
+Bird,Pet sitting,8,1521
+Reptile / amphibian,Pet sitting,5,658
+Small mammal,Pet sitting,10,1233
+Large mammal,Pet sitting,9,764
+Dog,Boarding,17,16880
+Cat,Boarding,16,12056
+Bird,Boarding,2,1521
+Reptile / amphibian,Boarding,1,658
+Small mammal,Boarding,10,1233
+Large mammal,Boarding,2,764
+Dog,Pet insurance,29,16880
+Cat,Pet insurance,12,12056
+Bird,Pet insurance,1,1521
+Reptile / amphibian,Pet insurance,2,658
+Small mammal,Pet insurance,2,1233
+Large mammal,Pet insurance,6,764

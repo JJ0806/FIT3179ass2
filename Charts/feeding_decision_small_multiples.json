@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "What informs feeding decisions?",
+    "subtitle": [
+      "Victoria, 2023: published top-five considerations by pet type",
+      "Multiple responses allowed. Absent considerations are not necessarily zero."
+    ],
+    "anchor": "start"
+  },
+  "background": "white",
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8ECEF",
+      "domain": false,
+      "labelLimit": 260
+    },
+    "legend": {
+      "orient": "bottom",
+      "labelFontSize": 12,
+      "labelLimit": 300,
+      "titleLimit": 300
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitleColor": "#59656D",
+      "offset": 18
+    }
+  },
+  "data": {
+    "url": "../Data/victoria_feeding_decisions_2023.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "share_pct": "number",
+        "sample_n": "number"
+      }
+    }
+  },
+  "facet": {
+    "row": {
+      "field": "pet_type",
+      "type": "nominal",
+      "sort": [
+        "Bird",
+        "Dog",
+        "Cat"
+      ],
+      "header": {
+        "title": null,
+        "labelFontSize": 14,
+        "labelOrient": "top",
+        "labelAnchor": "start"
+      }
+    }
+  },
+  "spec": {
+    "width": 570,
+    "height": 160,
+    "mark": {
+      "type": "point",
+      "filled": true,
+      "size": 100,
+      "color": "#157A6E"
+    },
+    "encoding": {
+      "x": {
+        "field": "share_pct",
+        "type": "quantitative",
+        "title": "Respondents (%)",
+        "scale": {
+          "domain": [
+            0,
+            100
+          ]
+        },
+        "axis": {
+          "labelExpr": "datum.value + '%'"
+        }
+      },
+      "y": {
+        "field": "consideration",
+        "type": "nominal",
+        "sort": "-x",
+        "axis": {
+          "title": null,
+          "labelLimit": 280
+        }
+      },
+      "tooltip": [
+        {
+          "field": "pet_type",
+          "type": "nominal",
+          "title": "Pet type"
+        },
+        {
+          "field": "consideration",
+          "type": "nominal",
+          "title": "Consideration"
+        },
+        {
+          "field": "share_pct",
+          "type": "quantitative",
+          "title": "Respondents (%)",
+          "format": ".0f"
+        },
+        {
+          "field": "sample_n",
+          "type": "quantitative",
+          "title": "Question-specific sample",
+          "format": ","
+        }
+      ]
+    }
+  },
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "How common are birds compared with other pets?",
+    "subtitle": "Australian households owning each type, 2025; categories overlap",
+    "anchor": "start"
+  },
+  "width": 640,
+  "height": 300,
+  "background": "white",
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8ECEF",
+      "domain": false,
+      "labelLimit": 260
+    },
+    "legend": {
+      "orient": "bottom",
+      "labelFontSize": 12,
+      "labelLimit": 300,
+      "titleLimit": 300
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitleColor": "#59656D",
+      "offset": 18
+    }
+  },
+  "data": {
+    "url": "../Data/pet_ownership_2025.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "ownership_pct": "number"
+      }
+    }
+  },
+  "mark": {
+    "type": "bar",
+    "cornerRadiusEnd": 3
+  },
+  "encoding": {
+    "y": {
+      "field": "pet_type",
+      "type": "nominal",
+      "title": "Pet type",
+      "sort": "-x"
+    },
+    "x": {
+      "field": "ownership_pct",
+      "type": "quantitative",
+      "title": "Households (%)",
+      "scale": {
+        "domain": [
+          0,
+          100
+        ]
+      },
+      "axis": {
+        "labelExpr": "datum.value + '%'"
+      }
+    },
+    "color": {
+      "condition": {
+        "test": "datum.pet_type == 'Birds'",
+        "value": "#157A6E"
+      },
+      "value": "#AAB5BC"
+    },
+    "tooltip": [
+      {
+        "field": "pet_type",
+        "type": "nominal",
+        "title": "Pet type"
+      },
+      {
+        "field": "ownership_pct",
+        "type": "quantitative",
+        "title": "Households (%)",
+        "format": ".1f"
+      }
+    ]
+  }
+}

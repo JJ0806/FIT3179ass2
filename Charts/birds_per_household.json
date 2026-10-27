@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "One bird, a pair or a flock?",
+    "subtitle": "Bird-owning households, Australia, 2022",
+    "anchor": "start"
+  },
+  "width": 640,
+  "height": 100,
+  "background": "white",
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8ECEF",
+      "domain": false,
+      "labelLimit": 260
+    },
+    "legend": {
+      "orient": "bottom",
+      "labelFontSize": 12,
+      "labelLimit": 300,
+      "titleLimit": 300
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitleColor": "#59656D",
+      "offset": 18
+    }
+  },
+  "data": {
+    "url": "../Data/birds_per_household_2022.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "share_pct": "number",
+        "order": "number"
+      }
+    }
+  },
+  "mark": {
+    "type": "bar",
+    "height": 50
+  },
+  "encoding": {
+    "x": {
+      "field": "share_pct",
+      "type": "quantitative",
+      "title": "Share of bird-owning households",
+      "stack": "normalize",
+      "axis": {
+        "format": ".0%"
+      }
+    },
+    "color": {
+      "field": "group",
+      "type": "nominal",
+      "title": "Number of birds",
+      "scale": {
+        "domain": [
+          "One bird",
+          "Two birds",
+          "Three or more"
+        ],
+        "range": [
+          "#8BC7B6",
+          "#157A6E",
+          "#174B45"
+        ]
+      }
+    },
+    "order": {
+      "field": "order",
+      "type": "quantitative"
+    },
+    "tooltip": [
+      {
+        "field": "group",
+        "type": "nominal",
+        "title": "Number of birds"
+      },
+      {
+        "field": "share_pct",
+        "type": "quantitative",
+        "title": "Households (%)",
+        "format": ".0f"
+      }
+    ]
+  }
+}

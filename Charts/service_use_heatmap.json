@@ -1,0 +1,121 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Which services do owners use?",
+    "subtitle": [
+      "Victoria, 2023: five comparable services used in the preceding 12 months",
+      "Bird-owner results are indicative; survey combines panel and opt-in respondents."
+    ],
+    "anchor": "start"
+  },
+  "width": 640,
+  "height": 300,
+  "background": "white",
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8ECEF",
+      "domain": false,
+      "labelLimit": 260
+    },
+    "legend": {
+      "orient": "bottom",
+      "labelFontSize": 12,
+      "labelLimit": 300,
+      "titleLimit": 300
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitleColor": "#59656D",
+      "offset": 18
+    }
+  },
+  "data": {
+    "url": "../Data/victoria_service_use_2023.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "share_pct": "number",
+        "sample_n": "number"
+      }
+    }
+  },
+  "mark": {
+    "type": "rect",
+    "stroke": "white",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "service",
+      "type": "nominal",
+      "title": "Service",
+      "axis": {
+        "labelAngle": -25,
+        "labelLimit": 180
+      },
+      "sort": [
+        "Veterinary",
+        "Grooming",
+        "Pet sitting",
+        "Boarding",
+        "Pet insurance"
+      ]
+    },
+    "y": {
+      "field": "pet_type",
+      "type": "nominal",
+      "title": "Pet type",
+      "sort": [
+        "Bird",
+        "Dog",
+        "Cat",
+        "Small mammal",
+        "Large mammal",
+        "Reptile / amphibian"
+      ]
+    },
+    "color": {
+      "field": "share_pct",
+      "type": "quantitative",
+      "title": "Owners using service (%)",
+      "scale": {
+        "domain": [
+          0,
+          100
+        ],
+        "scheme": "tealblues"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "pet_type",
+        "type": "nominal",
+        "title": "Pet type"
+      },
+      {
+        "field": "service",
+        "type": "nominal",
+        "title": "Service"
+      },
+      {
+        "field": "share_pct",
+        "type": "quantitative",
+        "title": "Owners using service (%)",
+        "format": ".0f"
+      },
+      {
+        "field": "sample_n",
+        "type": "quantitative",
+        "title": "Question-specific sample",
+        "format": ","
+      }
+    ]
+  }
+}

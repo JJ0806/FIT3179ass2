@@ -1,0 +1,8 @@
+frequency,share_pct,order,sample_n
+Every day,8,1,1205
+More than once a week,12,2,1205
+Once a week,35,3,1205
+Weekly to monthly,29,4,1205
+Every 2–3 months,12,5,1205
+Less often than every 3 months,3,6,1205
+Not applicable,2,8,1205

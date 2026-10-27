@@ -1,0 +1,125 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Recorded sightings of native companion-bird species",
+    "subtitle": [
+      "ALA human-observation records, 2015\u20132025; 50 km-radius equal-area hexagons",
+      "Sightings are not pet counts or abundance; sampling effort varies."
+    ],
+    "anchor": "start"
+  },
+  "width": 640,
+  "height": 430,
+  "background": "white",
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8ECEF",
+      "domain": false,
+      "labelLimit": 260
+    },
+    "legend": {
+      "orient": "bottom",
+      "labelFontSize": 12,
+      "labelLimit": 300,
+      "titleLimit": 300
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitleColor": "#59656D",
+      "offset": 18
+    }
+  },
+  "projection": {
+    "type": "mercator"
+  },
+  "params": [
+    {
+      "name": "species_choice",
+      "value": "Budgerigar",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Budgerigar",
+          "Cockatiel",
+          "Galah"
+        ],
+        "name": "Species: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "../Data/australia_states.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#EDF1F2",
+        "stroke": "white"
+      }
+    },
+    {
+      "data": {
+        "url": "../Data/wild_bird_hexagons.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.species == species_choice && datum.properties.record_count > 0"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 0.15
+      },
+      "encoding": {
+        "color": {
+          "field": "properties.record_count",
+          "type": "quantitative",
+          "title": "Records per cell",
+          "scale": {
+            "type": "log",
+            "scheme": "yelloworangered",
+            "domain": [
+              1,
+              68198
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.species",
+            "type": "nominal",
+            "title": "Species"
+          },
+          {
+            "field": "properties.hex_id",
+            "type": "nominal",
+            "title": "Cell"
+          },
+          {
+            "field": "properties.record_count",
+            "type": "quantitative",
+            "title": "Occurrence records",
+            "format": ","
+          }
+        ]
+      }
+    }
+  ]
+}

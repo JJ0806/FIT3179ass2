@@ -20,11 +20,14 @@
       "labelFontSize": 12,
       "titleFontSize": 13,
       "gridColor": "#E8ECEF",
-      "domain": false
+      "domain": false,
+      "labelLimit": 260
     },
     "legend": {
       "orient": "bottom",
-      "labelFontSize": 12
+      "labelFontSize": 12,
+      "labelLimit": 300,
+      "titleLimit": 300
     },
     "title": {
       "fontSize": 18,
@@ -34,7 +37,7 @@
     }
   },
   "data": {
-    "url": "Data/australia_states.geojson",
+    "url": "../Data/australia_states.geojson",
     "format": {
       "type": "json",
       "property": "features"
@@ -48,9 +51,16 @@
       "lookup": "properties.state_code",
       "from": {
         "data": {
-          "url": "Data/bird_ownership_states_2016.csv",
+          "url": "../Data/bird_ownership_states_2016.csv",
           "format": {
-            "type": "csv"
+            "type": "csv",
+            "parse": {
+              "ownership_pct": "number",
+              "sample_n": "number",
+              "reliable": "number",
+              "longitude": "number",
+              "latitude": "number"
+            }
           }
         },
         "key": "state_code",

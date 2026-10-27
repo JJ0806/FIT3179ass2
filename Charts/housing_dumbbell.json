@@ -1,0 +1,193 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "How have bird-keeping arrangements changed?",
+    "subtitle": [
+      "Bird-owning households, Australia, 2019 and 2022",
+      "Categories overlap: a household may keep birds in more than one arrangement."
+    ],
+    "anchor": "start"
+  },
+  "width": 640,
+  "height": 230,
+  "background": "white",
+  "config": {
+    "font": "Arial",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "gridColor": "#E8ECEF",
+      "domain": false,
+      "labelLimit": 260
+    },
+    "legend": {
+      "orient": "bottom",
+      "labelFontSize": 12,
+      "labelLimit": 300,
+      "titleLimit": 300
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitleColor": "#59656D",
+      "offset": 18
+    }
+  },
+  "data": {
+    "url": "../Data/bird_housing_2019_2022.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "pct_2019": "number",
+        "pct_2022": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.pct_2022 - datum.pct_2019",
+      "as": "change_pp"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "arrangement",
+      "type": "nominal",
+      "title": "Arrangement",
+      "sort": [
+        "Indoor caged birds",
+        "Outdoor aviary birds",
+        "Chickens"
+      ],
+      "axis": {
+        "labelLimit": 250
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 3,
+        "color": "#AAB5BC"
+      },
+      "encoding": {
+        "x": {
+          "field": "pct_2019",
+          "type": "quantitative",
+          "title": "Bird-owning households (%)",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": {
+            "labelExpr": "datum.value + '%'"
+          }
+        },
+        "x2": {
+          "field": "pct_2022"
+        },
+        "tooltip": [
+          {
+            "field": "arrangement",
+            "type": "nominal",
+            "title": "Arrangement"
+          },
+          {
+            "field": "pct_2019",
+            "type": "quantitative",
+            "title": "2019 (%)"
+          },
+          {
+            "field": "pct_2022",
+            "type": "quantitative",
+            "title": "2022 (%)"
+          },
+          {
+            "field": "change_pp",
+            "type": "quantitative",
+            "title": "Change (percentage points)",
+            "format": "+.0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "fold": [
+            "pct_2019",
+            "pct_2022"
+          ],
+          "as": [
+            "survey",
+            "ownership_pct"
+          ]
+        },
+        {
+          "calculate": "datum.survey == 'pct_2019' ? '2019' : '2022'",
+          "as": "year_label"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 110
+      },
+      "encoding": {
+        "x": {
+          "field": "ownership_pct",
+          "type": "quantitative",
+          "title": "Bird-owning households (%)",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": {
+            "labelExpr": "datum.value + '%'"
+          }
+        },
+        "color": {
+          "field": "year_label",
+          "type": "nominal",
+          "title": "Survey year",
+          "scale": {
+            "domain": [
+              "2019",
+              "2022"
+            ],
+            "range": [
+              "#D17732",
+              "#157A6E"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "arrangement",
+            "type": "nominal",
+            "title": "Arrangement"
+          },
+          {
+            "field": "year_label",
+            "type": "nominal",
+            "title": "Year"
+          },
+          {
+            "field": "ownership_pct",
+            "type": "quantitative",
+            "title": "Households (%)",
+            "format": ".0f"
+          }
+        ]
+      }
+    }
+  ]
+}
