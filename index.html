@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+<html lang="en-AU">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="Explore birds as pets in Australia: household ownership, historical maps, bird-keeping arrangements, expenditure and a Victorian care case study.">
+
+  <meta name="theme-color" content="#173f37">
+
+  <title>Feathered Companions | Birds as Pets in Australia</title>
+
+  <style>
+
+    :root { --paper:#f5f3ec; --white:#fff; --ink:#203b34; --muted:#5c6861; --green:#157a6e; --forest:#173f37; --line:#dce2d9; --lime:#e5efbd; --rust:#a74b29; --serif:Georgia,'Times New Roman',serif; }
+
+    * { box-sizing:border-box; }
+
+    html { scroll-behavior:smooth; scroll-padding-top:24px; }
+
+    body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+
+    a { color:var(--green); text-underline-offset:4px; }
+
+    a:hover { text-decoration-thickness:2px; }
+
+    button,select { font:inherit; }
+
+    :focus-visible { outline:3px solid #bc5e35; outline-offset:5px; }
+
+    .skip-link { position:fixed; top:-80px; left:20px; z-index:20; padding:12px 20px; background:white; }
+
+    .skip-link:focus { top:12px; }
+
+    .site-nav { position:sticky; top:0; z-index:10; background:rgba(245,243,236,.97); border-bottom:1px solid var(--line); }
+
+    .nav-inner { max-width:1320px; margin:auto; display:flex; justify-content:space-between; align-items:center; gap:24px; padding:16px 32px; }
+
+    .wordmark { font-size:13px; font-weight:750; letter-spacing:.1em; text-transform:uppercase; color:var(--forest); text-decoration:none; white-space:nowrap; }
+
+    .nav-links { display:flex; gap:26px; align-items:center; overflow-x:auto; }
+
+    .nav-links a { font-size:13px; color:var(--muted); text-decoration:none; white-space:nowrap; }
+
+    .nav-links a:hover { color:var(--green); text-decoration:underline; }
+
+    .hero { background:var(--forest); color:#f6f6e9; position:relative; overflow:hidden; }
+
+    .hero-inner { max-width:1320px; margin:auto; padding:76px 32px 0; position:relative; z-index:1; }
+
+    .eyebrow { margin:0 0 22px; font-size:12px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; }
+
+    .hero .eyebrow { color:var(--lime); }
+
+    .hero-grid { display:grid; grid-template-columns:1fr 260px; gap:50px; align-items:center; }
+
+    h1 { font-family:var(--serif); font-size:clamp(45px,5.7vw,78px); font-weight:400; line-height:1.08; letter-spacing:-.045em; margin:0 0 23px; }
+
+    h1 em { color:var(--lime); font-weight:400; }
+
+    .hero-deck { max-width:670px; font-size:19px; color:#d7e1d8; margin:0; line-height:1.7; }
+
+    .hero-sub { margin:22px 0 34px; font-size:12px; color:#bacdc3; }
+
+    .feather { width:150px; height:245px; margin:0 auto; border-radius:90% 8% 75% 15%; transform:rotate(28deg); border:1px solid #95ad8a; background:repeating-linear-gradient(30deg,transparent 0 18px,rgba(189,210,164,.32) 19px 20px),linear-gradient(110deg,rgba(229,239,189,.22),rgba(229,239,189,.03)); position:relative; }
+
+    .feather::after { content:''; position:absolute; height:295px; width:2px; left:58%; top:12px; background:#c3d1a4; transform:rotate(10deg); transform-origin:top; }
+
+    .hero-stats { display:grid; grid-template-columns:repeat(3,1fr); margin-top:40px; border-top:1px solid #537166; }
+
+    .stat { padding:26px 25px 30px 0; }
+
+    .stat+.stat { border-left:1px solid #537166; padding-left:35px; }
+
+    .stat strong { display:block; font-family:var(--serif); font-size:45px; font-weight:400; line-height:1.2; color:var(--lime); }
+
+    .stat span { display:block; font-size:14px; margin-top:7px; }
+
+    .stat small { display:block; font-size:11px; color:#bdcfc5; margin-top:5px; }
+
+    main { max-width:1320px; padding:0 32px; margin:0 auto; }
+
+    .intro-strip { display:flex; gap:25px; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding:26px 0; font-size:13px; color:var(--muted); }
+
+    .intro-strip p { margin:0; max-width:850px; }
+
+    .intro-strip a { white-space:nowrap; font-size:12px; font-weight:650; }
+
+    .chapter { padding-top:76px; scroll-margin-top:18px; }
+
+    .chapter-heading { display:grid; grid-template-columns:70px 1fr; gap:22px; margin-bottom:30px; max-width:960px; }
+
+    .chapter-number { font:italic 42px/1.15 var(--serif); color:#899b83; border-top:2px solid #9eaf94; padding-top:12px; }
+
+    .chapter-heading .eyebrow { margin:0 0 9px; color:var(--green); }
+
+    h2 { font:400 clamp(30px,3.3vw,44px)/1.16 var(--serif); letter-spacing:-.025em; margin:0 0 16px; }
+
+    .chapter-heading p:last-child { max-width:780px; margin:0; color:var(--muted); }
+
+    .chart-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; align-items:start; }
+
+    .chart-card { min-width:0; margin:0; background:var(--white); border:1px solid var(--line); border-radius:3px; padding:27px 26px 0; overflow:hidden; }
+
+    .wide { grid-column:1/-1; }
+
+    .scope { color:var(--green); font-size:10px; font-weight:750; letter-spacing:.12em; text-transform:uppercase; margin:0 0 9px; }
+
+    h3 { margin:0; font-size:20px; line-height:1.35; font-weight:650; letter-spacing:-.02em; }
+
+    .chart-detail { color:var(--muted); font-size:12px; line-height:1.55; margin:12px 0 22px; max-width:960px; }
+
+    .chart-scroll { overflow-x:auto; overflow-y:hidden; padding:3px 0 12px; scrollbar-width:thin; }
+
+    .chart { min-height:220px; position:relative; }
+
+    #chart-1,#chart-2,#chart-3 { min-height:370px; }
+
+    #chart-6,#chart-11 { min-height:160px; }
+
+    #chart-12 { min-height:620px; }
+
+    .chart-status { color:var(--muted); font-size:13px; padding:55px 16px; background:#f6f8f4; text-align:center; border:1px dashed var(--line); }
+
+    .chart svg { display:block; }
+
+    .vega-bindings { padding:16px 2px 4px; font-size:13px; }
+
+    .vega-bindings select { margin-left:10px; padding:7px 34px 7px 12px; color:var(--forest); background:#f3f6ee; border:1px solid #a9baad; border-radius:3px; }
+
+    figcaption { margin-top:13px; }
+
+    .takeaway { font-size:14px; line-height:1.7; margin:0; padding:18px 0; border-top:1px solid var(--line); }
+
+    .chart-footer { display:flex; align-items:baseline; justify-content:space-between; gap:14px; border-top:1px solid #edf0e9; padding:13px 0; color:var(--muted); font-size:10px; }
+
+    .json-link { white-space:nowrap; font-size:11px; }
+
+    .context-note { border-left:3px solid var(--green); padding:16px 22px; margin:22px 0; font-size:13px; color:var(--muted); background:#eaf0e4; }
+
+    .context-note strong { color:var(--forest); }
+
+    .bridge { margin:30px 0 22px; padding:25px 28px; background:#e9ecdf; border:1px solid #d6dfcc; }
+
+    .bridge h3 { font-family:var(--serif); font-size:27px; font-weight:400; margin-bottom:9px; }
+
+    .bridge p { margin:0; color:var(--muted); font-size:14px; max-width:950px; }
+
+    .closing { margin:64px 0 32px; padding:38px 42px; color:#eff4e9; background:var(--forest); display:grid; grid-template-columns:1fr 1.3fr; gap:45px; }
+
+    .closing h2 { font-size:34px; margin:0; }
+
+    .closing p { margin:0; font-size:15px; color:#d5e2d6; }
+
+    .sources { padding:20px 0 58px; }
+
+    .sources h2 { font-size:29px; }
+
+    .sources-intro { color:var(--muted); font-size:13px; max-width:900px; }
+
+    details { border-top:1px solid var(--line); padding:17px 0; }
+
+    summary { cursor:pointer; font-size:14px; font-weight:650; }
+
+    details p,details li { font-size:13px; color:var(--muted); max-width:980px; }
+
+    details li { margin-bottom:9px; }
+
+    details ul { padding-left:20px; }
+
+    .page-footer { padding:25px 32px; border-top:1px solid var(--line); color:var(--muted); font-size:11px; text-align:center; }
+
+    .error { padding:20px; border:1px solid #c99376; background:#fff8f2; color:#713e28; font-size:13px; }
+
+    .error p { margin:0 0 12px; }
+
+    .error button { color:inherit; background:white; border:1px solid #c99376; border-radius:3px; padding:6px 13px; cursor:pointer; }
+
+    #tooltip { position:fixed; z-index:30; max-width:310px; padding:12px 15px; background:#fff; color:#203b34; border:1px solid #bacabd; border-radius:4px; box-shadow:0 5px 24px #173f3724; font-size:12px; line-height:1.6; pointer-events:none; }
+
+    #tooltip[hidden] { display:none; }
+
+    #tooltip div+div { margin-top:4px; }
+
+    noscript p { padding:20px; background:#fff3db; }
+
+    .source-list {list-style: none;padding-left: 0;}
+
+    @media(min-width:1000px) { #figure-3 .chart-scroll { max-width:950px; margin:auto; } #figure-7 .chart-scroll,#figure-9 .chart-scroll,#figure-12 .chart-scroll { max-width:1050px; margin:auto; } }
+
+    @media(max-width:900px) { .nav-inner { padding:13px 24px; gap:18px; } .nav-links { gap:20px; } .hero-inner { padding:50px 24px 0; } .hero-grid { grid-template-columns:1fr 150px; gap:25px; } .feather { width:105px; height:190px; } .feather::after { height:230px; } main { padding:0 24px; } .chart-grid { grid-template-columns:1fr; } .chapter { padding-top:55px; } .closing { gap:25px; padding:30px; } }
+
+    @media(max-width:600px) { html { scroll-padding-top:24px; } .nav-inner { flex-direction:column; align-items:flex-start; gap:8px; padding:12px 18px; } .nav-links { width:100%; gap:24px; } .nav-links a { font-size:12px; } .hero-inner { padding:40px 20px 0; } .hero-grid { grid-template-columns:1fr; } .feather { display:none; } .hero-deck { font-size:16px; } .hero-stats { margin-top:20px; } .stat { padding:20px 10px 22px 0; } .stat+.stat { padding-left:13px; } .stat strong { font-size:30px; } .stat span { font-size:11px; line-height:1.5; } .stat small { font-size:9px; } main { padding:0 14px; } .intro-strip { align-items:flex-start; flex-direction:column; gap:10px; padding:20px 5px; } .chapter-heading { grid-template-columns:38px 1fr; gap:14px; } .chapter-number { font-size:30px; } .chapter-heading p:last-child { font-size:14px; } .chart-card { padding:21px 15px 0; } h3 { font-size:18px; } .chart-footer { flex-wrap:wrap; gap:5px; } .closing { grid-template-columns:1fr; padding:28px 24px; } .closing h2 { font-size:30px; } .bridge { padding:23px; } }
+
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+
+    @media print { .site-nav,.json-link,#tooltip { display:none; } body { background:white; } .hero,.closing { color:black; background:white; } .hero-deck,.hero .eyebrow,.hero-sub,.stat strong,.stat small,.closing p { color:black; } .chart-card { break-inside:avoid; } details { display:block; } }
+
+  </style>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vega@5.33.0/build/vega.min.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vega-lite@5.23.0/build/vega-lite.min.js"></script>
+
+</head>
+
+<body id="top">
+
+  <a class="skip-link" href="#story">Skip to the story</a>
+
+  <header class="hero"><div class="hero-inner">
+
+    <p class="eyebrow">Birds as pets in Australia</p>
+
+    <div class="hero-grid"><div><h1>Feathered<br><em>companions.</em></h1>
+
+      <p class="hero-deck">Birds are part of Australian household life. Explore to see who keeps them, where they fit, and the everyday commitments behind ownership.</p>
+
+      <p class="hero-sub">National surveys · a Victorian care case study · native-species observation records</p>
+
+    </div><div class="feather" aria-hidden="true"></div></div>
+
+    <div class="hero-stats" aria-label="Three findings at a glance">
+
+      <div class="stat"><strong>9.5%</strong><span>of Australian households own birds</span><small>AMA · 2025</small></div>
+
+      <div class="stat"><strong>54%</strong><span>of bird-owning households keep 2+ birds</span><small>AMA · 2022</small></div>
+
+      <div class="stat"><strong>$555</strong><span>mean annual spend per bird-owning household</span><small>AMA · to March 2025 · AUD</small></div>
+
+    </div>
+
+  </div></header>
+
+  <main id="story">
+
+    <section class="chapter" id="ownership" aria-labelledby="ownership-heading">
+
+      <div class="chapter-heading"><span class="chapter-number" aria-hidden="true">01</span><div><p class="eyebrow">The national picture</p><h2 id="ownership-heading">Almost one household in ten.</h2>
+        <p>Birds occupy a smaller place in household ownership than dogs or cats, but remain a familiar part of Australian pet keeping.</p></div></div>
+
+      <div class="chart-grid"><figure class="chart-card" id="figure-4" aria-labelledby="title-4">
+
+      <header class="card-heading"><p class="scope">Australia · 2025</p><h3 id="title-4">A familiar pet, but a smaller share of households</h3></header>
+
+      <p class="chart-detail">Australian households owning each type, 2025</p>
+
+      <div class="chart-scroll" tabindex="0" aria-label="Scrollable chart: A familiar pet, but a smaller share of households"><div class="chart" id="chart-4" data-chart="4" aria-busy="true"><p class="chart-status" role="status">Chart loads as you scroll…</p></div></div>
+
+      <figcaption><p class="takeaway">Birds are kept by 9.5% of Australian households in 2025, ranking fourth among the pet categories shown. 
+        Dogs are about five times as common (49.3%), while fish are only 2 percentage points ahead of birds (11.5%). 
+        Birds therefore occupy a smaller but still substantial place in household pet keeping. 
+        These categories overlap because a household can own more than one pet type.</p><div class="chart-footer">
+          <span>AMA 2025 · household ownership</span><a class="json-link" href="Charts/pet_ownership_comparison.json" data-json="4">Chart JSON <span aria-hidden="true">↗</span></a></div></figcaption>
+
+    </figure><figure class="chart-card" id="figure-5" aria-labelledby="title-5">
+
+      <header class="card-heading"><p class="scope">Australia · 2016, 2022 & 2025</p><h3 id="title-5">A lower reported ownership rate over time</h3></header>
+
+      <p class="chart-detail">Australian households owning birds (%)</p>
+
+      <div class="chart-scroll" tabindex="0" aria-label="Scrollable chart: A lower reported ownership rate over time"><div class="chart" id="chart-5" data-chart="5" aria-busy="true"><p class="chart-status" role="status">Chart loads as you scroll…</p></div></div>
+
+      <figcaption><p class="takeaway">Reported bird ownership declined at each selected survey point: 12% in 2016, 11% in 2022 and 9.5% in 2025. 
+        The overall fall of 2.5 percentage points is roughly a 21% reduction relative to the 2016 rate. The 2022–2025 gap is larger than the 2016–2022 gap, despite covering fewer years. 
+        These survey estimates suggest a downward pattern, but this does not establish statistical significance.</p><div class="chart-footer">
+          <span>AMA 2016, 2022 & 2025 · selected survey estimates</span><a class="json-link" href="Charts/ownership_trend.json" data-json="5">Chart JSON <span aria-hidden="true">↗</span></a></div></figcaption>
+
+    </figure></div>
+
+    </section>
+
+    <section class="chapter" id="geography" aria-labelledby="geography-heading">
+
+      <div class="chapter-heading"><span class="chapter-number" aria-hidden="true">02</span>
+        <div><p class="eyebrow">Three maps, three questions</p><h2 id="geography-heading">The map changes with the measure.</h2>
+        <p>Ownership rates, approximate household totals and recorded sightings describe different things. The first two maps revisit 2016; the third adds ecological context for three native species familiar to bird keepers.</p>
+      </div>
+    </div>
+
+      <div class="chart-grid"><figure class="chart-card" id="figure-1" aria-labelledby="title-1">
+
+      <header class="card-heading"><p class="scope">Historical snapshot · 2016</p><h3 id="title-1">Where was ownership most common?</h3></header>
+
+      <p class="chart-detail">Households with birds (%), 2016 historical snapshot Grey: suppressed or missing.</p>
+
+      <div class="chart-scroll" tabindex="0" aria-label="Scrollable chart: Where was ownership most common?"><div class="chart" id="chart-1" data-chart="1" aria-busy="true"><p class="chart-status" role="status">Chart loads as you scroll…</p></div></div>
+
+      <figcaption><p class="takeaway">In 2016, the ACT had the highest displayed ownership estimate at 16%, followed by NSW at 14% and South Australia at 13%. 
+        Victoria and Queensland both recorded 10%, while Tasmania had the lowest displayed estimate at 7%. 
+        This 9-percentage-point spread suggests bird keeping was uneven across jurisdictions, setting up a different question: where were the most bird-owning households? </p>
+
+        <div class="chart-footer">
+
+            <span>AMA 2016 · ABS boundaries</span>
+
+            <a class="json-link" href="Charts/ownership_choropleth.json" data-json="1">Chart JSON <span aria-hidden="true">↗</span>
+
+            </a>
+
+        </div>
+
+    </figcaption>
+
+    </figure><figure class="chart-card" id="figure-2" aria-labelledby="title-2">
+
+      <header class="card-heading"><p class="scope">Historical estimate · 2016</p>
+
+        <h3 id="title-2">Where might the most bird-owning households be?</h3>
+
+    </header>
+
+      <p class="chart-detail">Approximate derived household counts, 2016 Circle area encodes count. Suppressed states have no circle.</p>
+
+      <div class="chart-scroll" tabindex="0" aria-label="Scrollable chart: Where might the most bird-owning households be?">
+
+        <div class="chart" id="chart-2" data-chart="2" aria-busy="true">
+
+            <p class="chart-status" role="status">Chart loads as you scroll…</p>
+
+        </div></div>
+
+      <figcaption>
+
+        <p class="takeaway">Multiplying ownership rates by Census occupied private dwellings gives approximately 365,000 bird-owning households in NSW, compared with 211,000 in Victoria and 166,000 in Queensland. 
+          NSW’s derived total is about 1.7 times Victoria’s, although its ownership rate is only 4 percentage points higher. 
+          By contrast, the ACT’s higher ownership rate translates to only about 23,000 households because its household base is much smaller. </p>
+
+        <div class="chart-footer"><span>AMA 2016 × ABS 2016 Census</span>
+
+            <a class="json-link" href="Charts/household_symbol_map.json" data-json="2">Chart JSON <span aria-hidden="true">↗</span></a>
+
+        </div>
+
+    </figcaption>
+
+    </figure></div>
+
+      <div class="chart-grid"><figure class="chart-card wide" id="figure-3" aria-labelledby="title-3">
+
+      <header class="card-heading"><p class="scope">Recorded sightings · 2015–2025</p>
+
+        <h3 id="title-3">Beyond the home: three familiar native species</h3></header>
+
+      <p class="chart-detail">ALA human-observation records, 2015–2025</p>
+
+      <div class="chart-scroll" tabindex="0" aria-label="Scrollable chart: Beyond the home: three familiar native species">
+
+        <div class="chart" id="chart-3" data-chart="3" aria-busy="true"><p class="chart-status" role="status">Chart loads as you scroll…</p></div></div>
+
+      <figcaption>
+
+        <p class="takeaway">The bundled map contains about 822,000 galah observation records, compared with roughly 51,000 cockatiel and 50,000 budgerigar records. 
+          Galahs also appear in more occupied grid cells: 1,024, versus 853 for cockatiels and 925 for budgerigars. 
+          Cockatiels thus have slightly more records than budgerigars, but those records occupy fewer cells.</p>
+
+        <div class="chart-footer"><span>Atlas of Living Australia & contributing providers
+
+        </span><a class="json-link" href="Charts/wild_bird_hexbin_map.json" data-json="3">Chart JSON <span aria-hidden="true">↗</span></a>
+
+    </div></figcaption>
+
+    </figure></div>
+
+      <aside class="context-note">
+
+        <strong>A sighting is not a pet, or a unique bird.</strong>
+
+        Each hexagon sums human-observation records, including repeated sightings.
+
+    </aside>
+
+    </section>
+
+    <section class="chapter" id="households" aria-labelledby="households-heading">
+
+      <div class="chapter-heading"><span class="chapter-number" aria-hidden="true">03</span>
+
+        <div><p class="eyebrow">Behind the household count</p>
+
+            <h2 id="households-heading">There is more than one way to keep birds.</h2>
+
+            <p>A household count hides the number of birds, the reasons for keeping them and the spaces they live in. National survey categories include backyard poultry as well as companion birds.</p>
+
+        </div>
+
+    </div>
+
+      <div class="chart-grid">
+
+        <figure class="chart-card" id="figure-6" aria-labelledby="title-6">
+
+      <header class="card-heading"><p class="scope">Australia · 2022</p>
+
+        <h3 id="title-6">More than half of bird households keep a pair or flock</h3>
+
+    </header>
+
+      <p class="chart-detail">Bird owning households, Australia, 2022</p>
+
+      <div class="chart-scroll" tabindex="0" aria-label="Scrollable chart: More than half of bird households keep a pair or flock">
+
+        <div class="chart" id="chart-6" data-chart="6" aria-busy="true">
+
+            <p class="chart-status" role="status">Chart loads as you scroll…</p>
+
+        </div>
+
+    </div>
+
+      <figcaption><p class="takeaway">In 2022, 54% of bird-owning households kept two or more birds, exceeding the 46% that kept just one. 
+        Households with three or more birds (30%) were also more common than those with exactly two (24%). 
+        Bird keeping therefore often involves a group rather than a single companion.</p>
+
+        <div class="chart-footer"><span>AMA 2022 · bird-owning households</span><a class="json-link" href="Charts/birds_per_household.json" data-json="6">Chart JSON <span aria-hidden="true">↗</span></a></div>
+
+    </figcaption>
+
+    </figure>
+
+    <figure class="chart-card" id="figure-8" aria-labelledby="title-8">
+
+      <header class="card-heading"><p class="scope">Australia · 2022</p><h3 id="title-8">Companionship is only part of the story</h3></header>
+
+      <p class="chart-detail">Reported reasons among bird owners, Australia, 2022; percentages need not sum to 100%</p>
+
+      <div class="chart-scroll" tabindex="0" aria-label="Scrollable chart: Companionship is only part of the story">
+
+        <div class="chart" id="chart-8" data-chart="8" aria-busy="true">
+
+            <p class="chart-status" role="status">Chart loads as you scroll…</p>
+
+        </div>
+
+    </div>
+
+      <figcaption><p class="takeaway">Companionship was the most frequently reported reason shown at 29%, but hobby keeping followed closely at 25%, a gap of just 4 percentage points. 
+        Relaxation accounted for 22%, while eggs were reported by 18%, highlighting the presence of backyard poultry within this broader ownership story. 
+        Together, these responses show why bird keeping encompasses both emotional and practical motivations.</p>
+
+        <div class="chart-footer"><span>AMA 2022 · selected reported reasons</span><a class="json-link" href="Charts/ownership_reasons.json" data-json="8">Chart JSON <span aria-hidden="true">↗</span></a></div>
+
+    </figcaption>
+
+    </figure>
+
+    <figure class="chart-card wide" id="figure-7" aria-labelledby="title-7">
+
+      <header class="card-heading"><p class="scope">Australia · 2019 & 2022</p><h3 id="title-7">Bird keeping spans cages, aviaries and backyards</h3></header>
+
+      <p class="chart-detail">Bird-owning households, Australia, 2019 and 2022 Categories overlap: a household may keep birds in more than one arrangement.</p>
+
+      <div class="chart-scroll" tabindex="0" aria-label="Scrollable chart: Bird keeping spans cages, aviaries and backyards">
+
+        <div class="chart" id="chart-7" data-chart="7" aria-busy="true"><p class="chart-status" role="status">Chart loads as you scroll…</p>
+
+        </div>
+
+    </div>
+
+      <figcaption>
+
+        <p class="takeaway">Between 2019 and 2022, indoor caged birds rose from 56% to 65% of bird-owning households, while outdoor aviary birds fell from 37% to 31%. 
+          The gap between these arrangements widened from 19 to 34 percentage points. Chicken keeping also rose by 9 percentage points, from 25% to 34%, overtaking outdoor aviary keeping in 2022. 
+          The pattern suggests growing shares for both indoor companions and backyard poultry, although overlapping categories do not show households switching from one arrangement to another.</p>
+          <div class="chart-footer"><span>AMA 2022 · comparison with 2019</span><a class="json-link" href="Charts/housing_dumbbell.json" data-json="7">Chart JSON <span aria-hidden="true">↗</span>
+
+        </a>
+
+    </div>
+
+    </figcaption>
+
+    </figure></div>
+
+    </section>
+
+    <section class="chapter" id="care" aria-labelledby="care-heading">
+
+      <div class="chapter-heading"><span class="chapter-number" aria-hidden="true">04</span><div><p class="eyebrow">The everyday commitment</p>
+
+        <h2 id="care-heading">Ownership continues after bringing a bird home.</h2><p>Spending is one part of the commitment. Services, cleaning and feeding reveal more of the everyday work.
+            Begin with national expenditure, then look closer at reported care practices in Victoria.</p>
+        </div>
+
+        </div>
+
+      <div class="chart-grid"><figure class="chart-card wide" id="figure-9" aria-labelledby="title-9">
+
+      <header class="card-heading"><p class="scope">Australia · to March 2025 · AUD</p><h3 id="title-9">What do bird owning households spend?</h3></header>
+
+      <p class="chart-detail">Mean annual spending per owning household, to March 2025 (AUD) Includes households reporting zero expenditure in a category.</p>
+
+      <div class="chart-scroll" tabindex="0" aria-label="Scrollable chart: What do bird-owning households spend?"><div class="chart" id="chart-9" data-chart="9" aria-busy="true"><p class="chart-status" role="status">Chart loads as you scroll…</p></div></div>
+
+      <figcaption><p class="takeaway">Bird-owning households reported mean annual spending of $555 to March 2025, the second-lowest figure among the pet types shown. This was $80 above fish-owning households ($475), 
+        but $1,101 below cat-owning households ($1,656). Dog-owning households spent about 4.5 times as much ($2,520), showing a substantial difference in reported household expenditure. 
+        These averages are per owning household, not per animal, and a lower average spend does not establish lower care needs.</p><div class="chart-footer">
+        <span>AMA 2025 · mean annual expenditure per owning household</span><a class="json-link" href="Charts/expenditure_comparison.json" data-json="9">Chart JSON <span aria-hidden="true">↗</span></a></div></figcaption>
+
+    </figure></div>
+
+      <aside class="bridge"><h3>A closer look: Victoria, 2023</h3><p>The next three charts come from the Victorian Pet Census.</p></aside>
+
+      <div class="chart-grid"><figure class="chart-card" id="figure-10" aria-labelledby="title-10">
+
+      <header class="card-heading"><p class="scope">Victorian case study · 2023</p><h3 id="title-10">Professional services are used differently</h3></header>
+
+      <p class="chart-detail">Victoria, 2023: five comparable services used in the preceding 12 months Bird-owner results</p>
+
+      <div class="chart-scroll" tabindex="0" aria-label="Scrollable chart: Professional services are used differently"><div class="chart" id="chart-10" data-chart="10" aria-busy="true">
+
+        <p class="chart-status" role="status">Chart loads as you scroll…</p></div></div>
+
+      <figcaption><p class="takeaway">In Victoria’s 2023 survey, veterinary services were the most-used of the five services shown for bird owners, at 23%. 
+        That was 55 percentage points below cat owners (78%) and 69 points below dog owners (92%). 
+        Other reported bird-owner service use was on the lower end: pet sitting 8%, grooming 7%, boarding 2% and insurance 1%.</p>
+        <div class="chart-footer">
+
+        <span>Victorian Pet Census 2023 · Table 6</span><a class="json-link" href="Charts/service_use_heatmap.json" data-json="10">Chart JSON <span aria-hidden="true">↗</span></a></div></figcaption>
+
+    </figure><figure class="chart-card" id="figure-11" aria-labelledby="title-11">
+
+      <header class="card-heading"><p class="scope">Victorian case study · 2023</p><h3 id="title-11">Cleaning is a recurring part of ownership</h3></header>
+
+      <p class="chart-detail">Victoria, 2023; bird owners with relevant housing (n=1,205)</p>
+
+      <div class="chart-scroll" tabindex="0" aria-label="Scrollable chart: Cleaning is a recurring part of ownership"><div class="chart" id="chart-11" data-chart="11" aria-busy="true"><p class="chart-status" role="status">Chart loads as you scroll…</p></div></div>
+
+      <figcaption><p class="takeaway">Cleaning once a week was most common at 35%, followed by weekly to monthly at 29%. Daily cleaning was reported at 8%, making the once-a-week label 27 percentage points larger. 
+        These figures show that recurring home maintenance remains part of ownership even where reported professional service use is relatively low. 
+      </p>
+      <div class="chart-footer"><span>Victorian Pet Census 2023</span><a class="json-link" href="Charts/housing_cleaning_frequency.json" data-json="11">Chart JSON <span aria-hidden="true">↗</span></a></div></figcaption>
+
+    </figure><figure class="chart-card wide" id="figure-12" aria-labelledby="title-12">
+
+      <header class="card-heading"><p class="scope">Victorian case study · 2023</p><h3 id="title-12">Feeding choices reflect habits, preferences and advice</h3></header>
+
+      <p class="chart-detail">Victoria, 2023: published top-five considerations by pet type Multiple responses allowed.</p>
+
+      <div class="chart-scroll" tabindex="0" aria-label="Scrollable chart: Feeding choices reflect habits, preferences and advice"><div class="chart" id="chart-12" data-chart="12" aria-busy="true">
+        <p class="chart-status" role="status">Chart loads as you scroll…</p></div></div>
+
+      <figcaption><p class="takeaway">For Victorian bird owners, habit (31%) and the pet’s preferences (30%) were almost tied among the published top five feeding considerations. 
+        Nutrition or health benefits followed at 26%, 5 percentage points below habit.
+         The leading consideration differed by pet type: veterinary advice for dogs (39%) and pet preferences for cats (40%), while nutrition was also more frequently cited for dogs (35%) than birds (26%).</p>
+
+        <div class="chart-footer"><span>Victorian Pet Census 2023 · Figure 22 · multiple answers allowed</span>
+
+            <a class="json-link" href="Charts/feeding_decision_small_multiples.json" data-json="12">Chart JSON <span aria-hidden="true">↗</span></a>
+
+
+
+        </div></figcaption>
+
+    </figure></div>
+
+     <aside class="closing"><h2>A small share of households.<br>A varied place in daily life.</h2>
+
+        <p>Birds account for small but significant porportion of Australian pets. They are diverse and economic pets, loving member of many household.</p>
+
+    </aside>
+
+    </section>
+
+    <section class="sources" id="sources" aria-labelledby="sources-heading">
+
+        <p class="eyebrow">Data Sources</p>
+
+    <footer class="page-footer" id="sources" aria-labelledby="sources-heading">
+
+        <div class="footer-inner">
+
+            <ul class="source-list">
+
+                <li><strong>A familiar pet, but a smaller share of households</strong> Animal Medicines Australia, Pets in Australia 2025:&#x20;
+
+                    <a href="https://animalmedicinesaustralia.org.au/wp-content/uploads/2025/09/SNR-2403006-Pet-Ownership-Study-2025-Designed_F3.pdf"&#x20;
+
+                    target="_blank" rel="noopener">https://animalmedicinesaustralia.org.au/wp-content/uploads/2025/09/SNR-2403006-Pet-Ownership-Study-2025-Designed_F3.pdf</a>
+
+                </li>
+
+                <li><strong>A lower reported ownership rate over time</strong> Animal Medicines Australia 2016:&#x20;
+
+                    <a href="https://animalmedicinesaustralia.org.au/wp-content/uploads/2016/12/AMA_Pet-Ownership-in-Australia-2016-Report_sml.pdf"&#x20;
+
+                    target="_blank" rel="noopener">https://animalmedicinesaustralia.org.au/wp-content/uploads/2016/12/AMA_Pet-Ownership-in-Australia-2016-Report_sml.pdf</a>
+
+                </li>
+
+                <li><strong>A lower reported ownership rate over time</strong> Animal Medicines Australia 2022:&#x20;
+
+                    <a href="https://pfiaa.com.au/wp-content/uploads/2022/11/NGR-2111001-Pet-Ownership-Study-2022-Report-F-Web-Single-Pages.pdf"&#x20;
+
+                    target="_blank" rel="noopener">https://pfiaa.com.au/wp-content/uploads/2022/11/NGR-2111001-Pet-Ownership-Study-2022-Report-F-Web-Single-Pages.pdf</a>
+
+                </li>
+
+                <li><strong>A lower reported ownership rate over time</strong> Animal Medicines Australia 2025:&#x20;
+
+                    <a href="https://animalmedicinesaustralia.org.au/wp-content/uploads/2025/09/SNR-2403006-Pet-Ownership-Study-2025-Designed_F3.pdf"&#x20;
+
+                    target="_blank" rel="noopener">https://animalmedicinesaustralia.org.au/wp-content/uploads/2025/09/SNR-2403006-Pet-Ownership-Study-2025-Designed_F3.pdf</a>
+
+                </li>
+
+                <li><strong>Where was ownership most common?</strong> Animal Medicines Australia 2016:&#x20;
+
+                    <a href="https://animalmedicinesaustralia.org.au/wp-content/uploads/2016/12/AMA_Pet-Ownership-in-Australia-2016-Report_sml.pdf"&#x20;
+
+                    target="_blank" rel="noopener">https://animalmedicinesaustralia.org.au/wp-content/uploads/2016/12/AMA_Pet-Ownership-in-Australia-2016-Report_sml.pdf</a>
+
+                </li>
+
+                <li><strong>Where was ownership most common?</strong> ABS ASGS 2021 state boundaries:&#x20;
+
+                    <a href="https://geo.abs.gov.au/arcgis/rest/services/ASGS2021/STE/MapServer/1"&#x20;
+
+                    target="_blank" rel="noopener">https://geo.abs.gov.au/arcgis/rest/services/ASGS2021/STE/MapServer/1</a>
+
+                </li>
+
+                <li><strong>Where might the most bird-owning households be?</strong> Animal Medicines Australia 2016:&#x20;
+
+                    <a href="https://animalmedicinesaustralia.org.au/wp-content/uploads/2016/12/AMA_Pet-Ownership-in-Australia-2016-Report_sml.pdf"&#x20;
+
+                    target="_blank" rel="noopener">https://animalmedicinesaustralia.org.au/wp-content/uploads/2016/12/AMA_Pet-Ownership-in-Australia-2016-Report_sml.pdf</a>
+
+                </li>
+
+                <li><strong>Where might the most bird-owning households be?</strong> ABS Census 2016 QuickStats (state codes 1–8):&#x20;
+
+                    <a href="https://www.abs.gov.au/census/find-census-data/quickstats/2016/1" target="_blank" rel="noopener">https://www.abs.gov.au/census/find-census-data/quickstats/2016/1</a>
+
+                </li>
+
+                <li><strong>Where might the most bird-owning households be?</strong> ABS ASGS 2021 state boundaries:&#x20;
+
+                    <a href="https://geo.abs.gov.au/arcgis/rest/services/ASGS2021/STE/MapServer/1"&#x20;
+
+                    target="_blank" rel="noopener">https://geo.abs.gov.au/arcgis/rest/services/ASGS2021/STE/MapServer/1</a>
+
+                </li>
+
+                <li><strong>Beyond the home: three familiar native species</strong> Atlas of Living Australia and contributing providers:&#x20;
+
+                    <a href="https://www.ala.org.au/" target="_blank" rel="noopener">https://www.ala.org.au/</a>
+
+                </li>
+
+                <li><strong>Beyond the home: three familiar native species</strong> ABS ASGS 2021 state boundaries:&#x20;
+
+                    <a href="https://geo.abs.gov.au/arcgis/rest/services/ASGS2021/STE/MapServer/1"&#x20;
+
+                    target="_blank" rel="noopener">https://geo.abs.gov.au/arcgis/rest/services/ASGS2021/STE/MapServer/1</a>
+
+                </li>
+
+                <li><strong>More than half of bird households keep a pair or flock</strong> Animal Medicines Australia, Pets in Australia 2022:&#x20;
+
+                    <a href="https://pfiaa.com.au/wp-content/uploads/2022/11/NGR-2111001-Pet-Ownership-Study-2022-Report-F-Web-Single-Pages.pdf"&#x20;
+
+                    target="_blank" rel="noopener">https://pfiaa.com.au/wp-content/uploads/2022/11/NGR-2111001-Pet-Ownership-Study-2022-Report-F-Web-Single-Pages.pdf</a>
+
+                </li>
+
+                <li><strong>Companionship is only part of the story</strong> Animal Medicines Australia, Pets in Australia 2022:&#x20;
+
+                    <a href="https://pfiaa.com.au/wp-content/uploads/2022/11/NGR-2111001-Pet-Ownership-Study-2022-Report-F-Web-Single-Pages.pdf"&#x20;
+
+                    target="_blank" rel="noopener">https://pfiaa.com.au/wp-content/uploads/2022/11/NGR-2111001-Pet-Ownership-Study-2022-Report-F-Web-Single-Pages.pdf</a>
+
+                </li>
+
+                <li><strong>Bird keeping spans cages, aviaries and backyards</strong> Animal Medicines Australia, Pets in Australia 2022:&#x20;
+
+                    <a href="https://pfiaa.com.au/wp-content/uploads/2022/11/NGR-2111001-Pet-Ownership-Study-2022-Report-F-Web-Single-Pages.pdf"&#x20;
+
+                    target="_blank" rel="noopener">https://pfiaa.com.au/wp-content/uploads/2022/11/NGR-2111001-Pet-Ownership-Study-2022-Report-F-Web-Single-Pages.pdf</a>
+
+                </li>
+
+                <li><strong>What do bird-owning households spend?</strong> Animal Medicines Australia, Pets in Australia 2025, p. 42:&#x20;
+
+                    <a href="https://animalmedicinesaustralia.org.au/wp-content/uploads/2025/09/SNR-2403006-Pet-Ownership-Study-2025-Designed_F3.pdf"&#x20;
+
+                    target="_blank" rel="noopener">https://animalmedicinesaustralia.org.au/wp-content/uploads/2025/09/SNR-2403006-Pet-Ownership-Study-2025-Designed_F3.pdf</a>
+
+                </li>
+
+                <li><strong>Professional services are used differently</strong> Victorian Pet Census 2023, Table 6, p. 57:&#x20;
+
+                    <a href="https://agriculture.vic.gov.au/livestock-and-animals/animal-welfare-victoria/animal-welfare/victorian-pet-census/Victorian-Pet-Census_Report.pdf"&#x20;
+
+                    target="_blank" rel="noopener">https://agriculture.vic.gov.au/livestock-and-animals/animal-welfare-victoria/animal-welfare/victorian-pet-census/Victorian-Pet-Census_Report.pdf</a>
+
+                </li>
+
+                <li><strong>Cleaning is a recurring part of ownership</strong> Victorian Pet Census 2023, Figure 32, p. 50:&#x20;
+
+                    <a href="https://agriculture.vic.gov.au/livestock-and-animals/animal-welfare-victoria/animal-welfare/victorian-pet-census/Victorian-Pet-Census_Report.pdf"&#x20;
+
+                    target="_blank" rel="noopener">https://agriculture.vic.gov.au/livestock-and-animals/animal-welfare-victoria/animal-welfare/victorian-pet-census/Victorian-Pet-Census_Report.pdf</a>
+
+                </li>
+
+                <li><strong>Feeding choices reflect habits, preferences and advice</strong> Victorian Pet Census 2023, Figure 22, p. 41:&#x20;
+
+                    <a href="https://agriculture.vic.gov.au/livestock-and-animals/animal-welfare-victoria/animal-welfare/victorian-pet-census/Victorian-Pet-Census_Report.pdf"&#x20;
+
+                    target="_blank" rel="noopener">https://agriculture.vic.gov.au/livestock-and-animals/animal-welfare-victoria/animal-welfare/victorian-pet-census/Victorian-Pet-Census_Report.pdf</a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </footer>
+
+    </section>
+
+  <div id="tooltip" role="tooltip" hidden></div>
+
+  <script>
+
+  'use strict';
+  const chartFiles = {
+  "2": "household_symbol_map.json",
+  "1": "ownership_choropleth.json",
+  "6": "birds_per_household.json",
+  "5": "ownership_trend.json",
+  "11": "housing_cleaning_frequency.json",
+  "7": "housing_dumbbell.json",
+  "10": "service_use_heatmap.json",
+  "3": "wild_bird_hexbin_map.json",
+  "8": "ownership_reasons.json",
+  "9": "expenditure_comparison.json",
+  "4": "pet_ownership_comparison.json",
+  "12": "feeding_decision_small_multiples.json"
+};
+
+  function adaptSpec(original, availableWidth) {
+    const spec = JSON.parse(JSON.stringify(original));
+    delete spec.title;
+    spec.background = 'transparent';
+    spec.config = spec.config || {};
+    spec.config.font = 'Arial';
+    spec.config.axis = {...spec.config.axis, labelColor:'#52635b', titleColor:'#344d42', gridColor:'#e8ede5', titlePadding:14};
+    const number = Number(original.usermeta?.dashboardNumber || 0);
+    const budget = {1:20,2:25,3:20,4:185,5:85,6:40,7:250,8:185,9:185,10:240,11:40,12:310}[number] || 120;
+    const width = Math.max(number===12 ? 280 : 260, Math.floor(availableWidth-budget));
+    if (spec.facet) spec.spec.width = width;
+    else spec.width = width;
+    if (number>=1 && number<=3) spec.height = Math.min(440, Math.max(290,width*.69));
+    if (number===6) spec.encoding.color.legend = {columns:1};
+    if (number===11) {
+      spec.encoding.color.legend = {...spec.encoding.color.legend,columns:1};
+      spec.encoding.x.title = ['Normalised share of published','labelled percentages'];
+    }
+    if (number===9) spec.encoding.x.title = ['Annual spending per owning household','(AUD)'];
+    return spec;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const tooltip = document.getElementById('tooltip');
+    const cards = [...document.querySelectorAll('.chart[data-chart]')];
+    const pageBase = new URL('./', location.href);
+    const views = new Map();
+    const specifications = new Map();
+    const pending = new Set();
+    let resizeTimer;
+
+    function showTooltip(handler, event, item, value) {
+      if (value==null) { tooltip.hidden=true; return; }
+      tooltip.replaceChildren();
+      const pairs = typeof value==='object' ? Object.entries(value) : [['Value',value]];
+      for (const [label,detail] of pairs) {
+        const row=document.createElement('div');
+        const strong=document.createElement('strong'); strong.textContent=label+': ';
+        row.append(strong,document.createTextNode(String(detail))); tooltip.append(row);
+      }
+      tooltip.hidden=false;
+      const x=event?.clientX ?? 20, y=event?.clientY ?? 20;
+      tooltip.style.left=Math.max(8,Math.min(x+14,innerWidth-tooltip.offsetWidth-8))+'px';
+      tooltip.style.top=Math.max(8,Math.min(y+14,innerHeight-tooltip.offsetHeight-8))+'px';
+    }
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') tooltip.hidden=true; });
+    document.addEventListener('scroll',()=>{tooltip.hidden=true;},{passive:true,capture:true});
+
+    const cache = new Map();
+    let loader;
+    if (window.vega) {
+      loader=vega.loader({baseURL:pageBase.href});
+      loader.load=uri=>{
+        let local=String(uri).replace(/^(?:\.\.\/|\.\/)+(?=Data\/)/,'');
+        const url=new URL(local,pageBase).href;
+        if(!cache.has(url)) cache.set(url,fetch(url).then(r=>{
+          if(!r.ok) throw new Error('Cannot load '+local+' (HTTP '+r.status+').');
+          return r.text();
+        }).catch(error=>{cache.delete(url);throw error;}));
+        return cache.get(url);
+      };
+    }
+
+    async function getSpec(n) {
+      if(specifications.has(n)) return specifications.get(n);
+      const numbered=chartFiles[n], plain=numbered.replace(/^\d+_/, '');
+      for (const name of [plain,numbered]) {
+        const url=new URL('Charts/'+name,pageBase);
+        const response=await fetch(url);
+        if(response.status===404) continue;
+        if(!response.ok) throw new Error('Cannot load '+name+' (HTTP '+response.status+').');
+        const spec=await response.json();
+        spec.usermeta={...spec.usermeta,dashboardNumber:n};
+        specifications.set(n,spec);
+        document.querySelector('[data-json="'+n+'"]').href=url.href;
+        return spec;
+      }
+      throw new Error('Missing Charts/'+plain+' (or '+numbered+').');
+    }
+
+    function renderError(host,error) {
+      host.replaceChildren();
+      const box=document.createElement('div'); box.className='error'; box.setAttribute('role','alert');
+      const text=document.createElement('p');
+      text.textContent='This chart could not load. '+error.message+' Keep index.html beside the Charts and Data folders, then open it with Live Server.';
+      const button=document.createElement('button'); button.type='button'; button.textContent='Retry chart';
+      button.addEventListener('click',()=>render(host));
+      box.append(text,button);host.append(box);
+    }
+
+    async function render(host) {
+      const n=Number(host.dataset.chart);
+      if(pending.has(n)) return;
+      pending.add(n); host.setAttribute('aria-busy','true');
+      try {
+        if(location.protocol==='file:') throw new Error('Browsers block local file data requests.');
+        if(!window.vega || !window.vegaLite) throw new Error('Vega libraries are unavailable; check your internet connection and reload the page.');
+        const original=await getSpec(n);
+        const prior=views.get(n);
+        const selectedSpecies=n===3 && prior ? prior.signal('species_choice') : null;
+        if(prior) { prior.finalize(); views.delete(n); }
+        const spec=adaptSpec(original,host.parentElement.clientWidth);
+        if(selectedSpecies) spec.params.find(p=>p.name==='species_choice').value=selectedSpecies;
+        host.replaceChildren();
+        const errors=[];
+        const logger=vega.logger(vega.Warn);
+        logger.error=(...args)=>errors.push(args.map(x=>x?.message || String(x)).join(' '));
+        const view=new vega.View(vega.parse(vegaLite.compile(spec).spec),{renderer:'svg',loader,logger,tooltip:showTooltip});
+        views.set(n,view);
+        await view.initialize(host).runAsync();
+        if(errors.length) throw new Error(errors.join(' '));
+        host.querySelector('svg')?.setAttribute('aria-label',document.getElementById('title-'+n).textContent);
+        host.dataset.loaded='true';
+      } catch(error) { views.get(n)?.finalize();views.delete(n);renderError(host,error); }
+      finally {pending.delete(n);host.setAttribute('aria-busy','false');}
+    }
+
+    if('IntersectionObserver' in window) {
+      const observer=new IntersectionObserver(entries=>{
+        for(const entry of entries) if(entry.isIntersecting) {observer.unobserve(entry.target);render(entry.target);}
+      },{rootMargin:'500px 0px'});
+      cards.forEach(host=>observer.observe(host));
+    } else cards.forEach(render);
+    let lastWidth=document.documentElement.clientWidth;
+    window.addEventListener('resize',()=>{
+      if(document.documentElement.clientWidth===lastWidth) return;
+      lastWidth=document.documentElement.clientWidth;
+      clearTimeout(resizeTimer); resizeTimer=setTimeout(()=>{
+        cards.filter(host=>views.has(Number(host.dataset.chart))).forEach(render);
+      },220);
+    });
+  });
+  
+</script>
+
+</body>
+
+</html>
